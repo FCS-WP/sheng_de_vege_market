@@ -1,0 +1,52 @@
+//Footer
+.line-container {
+  position: relative;
+}
+
+.line-container {
+  .footer-line {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.line-container {
+  .icon-scroll-up {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+.line-container {
+  .icon-scroll-up {
+    img {
+      width: 50px;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+.elementor-nav-menu--main .elementor-item.elementor-item-active,
+.elementor-nav-menu--main .elementor-item.highlighted,
+.elementor-nav-menu--main .elementor-item:focus,
+.elementor-nav-menu--main .elementor-item:hover {
+  background-color: #f7e7ce;
+  border-radius: 20px;
+  text-decoration: none !important;
+}
+
+.elementor-nav-menu--main .elementor-item:after {
+  display: none !important;
+}
+
+#icon-facebook,
+#icon-instagram {
+  cursor: pointer;
+}

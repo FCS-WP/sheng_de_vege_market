@@ -1,0 +1,41 @@
+.checkout-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.checkout-left {
+  flex: 1 1 60%;
+}
+
+.checkout-right {
+  flex: 1 1 35%;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .checkout-layout {
+    flex-direction: column;
+  }
+}
+.woocommerce #place_order,
+.woocommerce-page #place_order,
+.woocommerce .button.alt {
+  background-color: #09b8b6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.woocommerce #place_order:hover,
+.woocommerce-page #place_order:hover,
+.woocommerce .button.alt:hover {
+  background-color: #079997;
+  transform: translateY(-1px);
+}

@@ -1,0 +1,40 @@
+.wc-menu-nav {
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+}
+
+.wc-menu-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wc-menu-item {
+  margin-bottom: 8px;
+}
+
+/* Link */
+.wc-menu-item a {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #09b8b6;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.wc-menu-item a:hover {
+  border-color: #09b8b6;
+  color: #09b8b6;
+}
+
+.wc-menu-item.is-active a,
+.wc-menu-item a[aria-current="page"] {
+  color: #09b8b6;
+  border-color: #09b8b6;
+}

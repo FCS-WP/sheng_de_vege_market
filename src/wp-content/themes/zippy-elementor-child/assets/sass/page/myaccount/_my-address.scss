@@ -1,0 +1,45 @@
+.wc-address-wrapper {
+  margin-top: 20px;
+}
+
+.wc-address-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.wc-address-card {
+  padding: 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  transition: 0.2s;
+}
+.wc-address-card:hover {
+  border-color: #078f8d;
+}
+
+.wc-address-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wc-address-card__title {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.wc-address-card__edit {
+  font-size: 14px;
+  color: #000;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.wc-address-card__body {
+  margin-top: 12px;
+  line-height: 1.5;
+  font-size: 14px;
+}

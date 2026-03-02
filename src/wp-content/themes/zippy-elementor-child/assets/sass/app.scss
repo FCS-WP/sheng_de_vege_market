@@ -1,0 +1,39 @@
+@import "./products/best-sale_products";
+@import "./woocomerce/add_to_cart";
+
+a {
+  text-decoration: none !important;
+}
+
+.elementor-post {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px;
+  align-items: flex-start;
+
+  .elementor-post__thumbnail__link {
+    flex: 0 0 35%; 
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .elementor-post__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .elementor-post__meta-data {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .elementor-post__title {
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@media (max-width: 767px) {
+  #au-icons {
+    position: relative;
+    padding: 0 50px;
+  }
+
+  #au-icons .slick-prev,
+  #au-icons .slick-next {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border: 1px solid #7a6d60;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 10;
+    font-size: 0;
+    line-height: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #au-icons .slick-prev {
+    left: 0;
+  }
+
+  #au-icons .slick-next {
+    right: 0;
+  }
+
+  #au-icons .slick-prev:before,
+  #au-icons .slick-next:before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+  }
+
+  #au-icons .slick-prev:before {
+    background-image: url('/wp-content/uploads/2026/03/back.png');
+  }
+
+  #au-icons .slick-next:before {
+    background-image: url('/wp-content/uploads/2026/03/right-arrow-1.png');
+  }
+}

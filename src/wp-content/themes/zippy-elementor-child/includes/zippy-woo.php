@@ -62,3 +62,19 @@ function add_quantity_attribute_to_ajax_button($args, $product)
     $args['attributes']['data-quantity'] = '1';
     return $args;
 }
+
+/* Remove Country, Region, State */
+add_filter('woocommerce_checkout_fields', 'custom_remove_checkout_fields');
+
+function custom_remove_checkout_fields($fields)
+{
+    unset($fields['billing']['billing_state']);
+    unset($fields['shipping']['shipping_state']);
+    unset($fields['billing']['billing_country']);
+    unset($fields['shipping']['shipping_country']);
+    $fields['billing']['billing_postcode']['label'] = 'Post Code';
+    $fields['billing']['billing_postcode']['placeholder'] = 'Post Code';
+    $fields['shipping']['shipping_postcode']['label'] = 'Post Code';
+    $fields['shipping']['shipping_postcode']['placeholder'] = 'Post Code';
+    return $fields;
+}

@@ -1,5 +1,10 @@
+@import "../lib/slick/slick.css";
+@import "../lib/slick/slick-theme.css";
 @import "./products/best-sale_products";
 @import "./woocomerce/add_to_cart";
+@import "./about";
+@import "./customize";
+
 
 a {
   text-decoration: none !important;

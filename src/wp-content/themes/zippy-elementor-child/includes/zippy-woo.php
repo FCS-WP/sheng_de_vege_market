@@ -72,9 +72,9 @@ function custom_remove_checkout_fields($fields)
     unset($fields['shipping']['shipping_state']);
     unset($fields['billing']['billing_country']);
     unset($fields['shipping']['shipping_country']);
-    $fields['billing']['billing_postcode']['label'] = 'Post Code';
-    $fields['billing']['billing_postcode']['placeholder'] = 'Post Code';
-    $fields['shipping']['shipping_postcode']['label'] = 'Post Code';
-    $fields['shipping']['shipping_postcode']['placeholder'] = 'Post Code';
+    $fields['billing']['billing_postcode']['label'] = 'Postal Code';
+    $fields['billing']['billing_postcode']['placeholder'] = 'Postal Code';
+    $fields['shipping']['shipping_postcode']['label'] = 'Postal Code';
+    $fields['shipping']['shipping_postcode']['placeholder'] = 'Postal Code';
     return $fields;
 }

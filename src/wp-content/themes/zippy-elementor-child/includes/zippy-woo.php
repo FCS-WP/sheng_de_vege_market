@@ -73,7 +73,11 @@ function custom_remove_checkout_fields($fields)
     unset($fields['billing']['billing_country']);
     unset($fields['shipping']['shipping_country']);
     unset($fields['billing']['billing_city']);
-    unset($fields['shipping']['billing_city']);
+    unset($fields['shipping']['shipping_city']);
+    $fields['billing']['billing_country']['required']  = false;
+    $fields['billing']['billing_country']['class'][]   = 'hidden';
+    $fields['shipping']['shipping_country']['required'] = false;
+    $fields['shipping']['shipping_country']['class'][]  = 'hidden';
     $fields['billing']['billing_postcode']['label'] = 'Postal Code';
     $fields['billing']['billing_postcode']['placeholder'] = 'Postal Code';
     $fields['shipping']['shipping_postcode']['label'] = 'Postal Code';
@@ -90,12 +94,17 @@ function shipping_to_free_over_amount($rates, $package)
         return $rates;
     }
 
-    $free_limit = 80;
+    $free_shipping_limit = 80;
+
     $cart_total = (float) WC()->cart->get_subtotal();
 
     foreach ($rates as $rate_id => $rate) {
+
         if ('flat_rate' === $rate->method_id) {
-            if ($cart_total >= $free_limit) {
+
+            $original_cost = (float) $rate->cost;
+
+            if ($cart_total >= $free_shipping_limit) {
                 $rates[$rate_id]->cost  = 0;
                 $rates[$rate_id]->label = 'Free Shipping';
 
@@ -105,7 +114,8 @@ function shipping_to_free_over_amount($rates, $package)
                     }
                 }
             } else {
-                $rates[$rate_id]->label = 'Delivery';
+                $rates[$rate_id]->cost  = $original_cost;
+                $rates[$rate_id]->label = $rate->label;
             }
         }
 
@@ -113,6 +123,5 @@ function shipping_to_free_over_amount($rates, $package)
             unset($rates[$rate_id]);
         }
     }
-
     return $rates;
 }

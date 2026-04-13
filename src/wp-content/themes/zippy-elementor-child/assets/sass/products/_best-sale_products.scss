@@ -1,3 +1,37 @@
-.best-sale_products{
-  
+.best-sale_products {
+    .custom-add-to-cart-wrapper {
+        position: relative;
+
+        .qty-minus-btn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            background: #fff;
+            border-right: none;
+
+            &:hover {
+                background: none !important;
+                outline: none !important;
+            }
+        }
+
+        .qty-input-val {
+            width: 100% !important;
+        }
+
+        .qty-plus-btn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background: #fff;
+            border-left: none;
+
+            &:hover {
+                background: none !important;
+                outline: none !important;
+            }
+        }
+    }
 }

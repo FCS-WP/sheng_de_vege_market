@@ -72,9 +72,56 @@ function custom_remove_checkout_fields($fields)
     unset($fields['shipping']['shipping_state']);
     unset($fields['billing']['billing_country']);
     unset($fields['shipping']['shipping_country']);
+    unset($fields['billing']['billing_city']);
+    unset($fields['shipping']['shipping_city']);
+    $fields['billing']['billing_country']['required']  = false;
+    $fields['billing']['billing_country']['class'][]   = 'hidden';
+    $fields['shipping']['shipping_country']['required'] = false;
+    $fields['shipping']['shipping_country']['class'][]  = 'hidden';
     $fields['billing']['billing_postcode']['label'] = 'Postal Code';
     $fields['billing']['billing_postcode']['placeholder'] = 'Postal Code';
     $fields['shipping']['shipping_postcode']['label'] = 'Postal Code';
     $fields['shipping']['shipping_postcode']['placeholder'] = 'Postal Code';
     return $fields;
+}
+
+
+add_filter('woocommerce_package_rates', 'shipping_to_free_over_amount', 20, 2);
+
+function shipping_to_free_over_amount($rates, $package)
+{
+    if (!WC()->cart) {
+        return $rates;
+    }
+
+    $free_shipping_limit = 80;
+
+    $cart_total = (float) WC()->cart->get_subtotal();
+
+    foreach ($rates as $rate_id => $rate) {
+
+        if ('flat_rate' === $rate->method_id) {
+
+            $original_cost = (float) $rate->cost;
+
+            if ($cart_total >= $free_shipping_limit) {
+                $rates[$rate_id]->cost  = 0;
+                $rates[$rate_id]->label = 'Free Shipping';
+
+                if (!empty($rates[$rate_id]->taxes) && is_array($rates[$rate_id]->taxes)) {
+                    foreach ($rates[$rate_id]->taxes as $key => $tax) {
+                        $rates[$rate_id]->taxes[$key] = 0;
+                    }
+                }
+            } else {
+                $rates[$rate_id]->cost  = $original_cost;
+                $rates[$rate_id]->label = $rate->label;
+            }
+        }
+
+        if ('free_shipping' === $rate->method_id) {
+            unset($rates[$rate_id]);
+        }
+    }
+    return $rates;
 }

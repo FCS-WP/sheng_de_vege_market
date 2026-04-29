@@ -9,3 +9,6 @@ function shin_scripts()
 
     wp_enqueue_script('main-scripts-js', THEME_URL . '-child' . '/assets/dist/js/main.min.js', array('jquery'), $version, true);
 }
+
+require_once THEME_DIR . '-child/woocommerce-/myaccount/form-signup.php';
+require_once THEME_DIR . '-child/woocommerce-/shop-filter.php';

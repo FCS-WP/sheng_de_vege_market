@@ -7,21 +7,6 @@ function remove_my_account_downloads($items)
 }
 
 
-// add_action('woocommerce_after_shop_loop_item', 'add_quantity_field_to_shop_loop', 15);
-
-// function add_quantity_field_to_shop_loop()
-// {
-//     global $product;
-
-//     if ($product && $product->is_type('simple') && $product->is_purchasable() && $product->is_in_stock()) {
-//         echo '<div class="custom-quantity-wrapper" data-product_id="' . esc_attr($product->get_id()) . '">';
-//         echo '<button type="button" class="qty-minus">-</button>';
-//         echo '<input type="number" class="qty-input" value="1" min="1" step="1">';
-//         echo '<button type="button" class="qty-plus">+</button>';
-//         echo '</div>';
-//     }
-// }
-
 add_action('woocommerce_after_shop_loop_item', 'shop_loop_add_to_cart', 15);
 
 function shop_loop_add_to_cart()

@@ -69,7 +69,7 @@ body.woocommerce-account {
     label {
       display: block;
       margin-bottom: 7px;
-      color: #25382f;
+      color: #69727d;
       font-size: 14px;
       font-weight: 800;
       line-height: 1.35;
@@ -82,12 +82,12 @@ body.woocommerce-account {
       width: 100%;
       min-height: 50px;
       padding: 12px 14px;
-      color: #13251d;
+      color: #69727d;
       background: #fff;
       border: 0 !important;
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(17, 24, 39, 0.08) !important;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1.4;
       transition: box-shadow 0.2s ease;
 
@@ -132,10 +132,10 @@ body.woocommerce-account {
 
     .woocommerce-privacy-policy-text,
     .custom-consent .description {
-      color: #33423b;
-      font-size: 18px;
+      color: #69727d;
+      font-size: 14px;
       font-weight: 400;
-      line-height: 1.55;
+      line-height: 1.5;
       letter-spacing: 0;
     }
 
@@ -143,10 +143,15 @@ body.woocommerce-account {
       display: flex;
       align-items: center;
       gap: 14px;
-      color: #33423b;
-      font-size: 18px;
+      color: #69727d;
+      font-size: 14px;
       font-weight: 600;
       line-height: 1.4;
+
+      span {
+        color: #111;
+        font-weight: 700;
+      }
 
       input {
         width: 18px;

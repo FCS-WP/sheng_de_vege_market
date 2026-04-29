@@ -412,17 +412,21 @@ body.logged-in {
     > a.zippy-mobile-user-menu__toggle {
       display: flex !important;
       align-items: center;
+      justify-content: space-between;
       gap: 10px;
       color: #17241e !important;
       background: transparent !important;
       border: 0 !important;
       text-decoration: none !important;
 
-      img {
-        display: block;
-        width: 22px;
-        height: 22px;
-        object-fit: contain;
+      &::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform 0.18s ease;
       }
 
       &:hover,
@@ -444,8 +448,12 @@ body.logged-in {
       line-height: 1.2;
     }
 
+    &.is-open > a.zippy-mobile-user-menu__toggle::after {
+      transform: rotate(225deg);
+    }
+
     > .zippy-mobile-user-menu__submenu {
-      display: block !important;
+      display: none !important;
       position: static !important;
       width: 100% !important;
       margin: 4px 0 0 !important;
@@ -485,6 +493,10 @@ body.logged-in {
           text-decoration: none !important;
         }
       }
+    }
+
+    &.is-open > .zippy-mobile-user-menu__submenu {
+      display: block !important;
     }
   }
 }

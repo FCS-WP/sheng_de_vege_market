@@ -1,0 +1,229 @@
+.zippy-checkout-area-question {
+  margin: 0 0 24px;
+  padding: 20px;
+  background: #fff;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 12px 34px rgba(17, 24, 39, 0.08);
+
+  h3 {
+    margin: 0 0 8px;
+    color: #17241e;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  &__text {
+    margin: 0 0 16px;
+    color: #405249;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 112px;
+      min-height: 44px;
+      margin: 0;
+      padding: 10px 14px;
+      color: #17241e;
+      background: #fff;
+      border: 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(17, 24, 39, 0.08);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      cursor: pointer;
+    }
+
+    input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--e-global-color-primary);
+    }
+  }
+
+  .optional {
+    display: none;
+  }
+
+  .description {
+    display: block !important;
+    margin: 0 0 16px;
+    color: #405249;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .woocommerce-input-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    > input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    > label.radio {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 112px;
+      min-height: 44px;
+      margin: 0;
+      padding: 10px 14px;
+      color: #17241e;
+      background: #fff;
+      border: 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(17, 24, 39, 0.08);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        border: 2px solid #9aa6a0;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 4px #fff;
+      }
+    }
+
+    > input[type="radio"]:checked + label.radio::before {
+      background: var(--e-global-color-primary);
+      border-color: var(--e-global-color-primary);
+    }
+  }
+}
+
+.woocommerce-shipping-methods {
+  li {
+    display: block;
+    margin: 0 0 14px;
+    clear: both;
+
+    > input.shipping_method {
+      margin-top: 3px;
+      vertical-align: top;
+      accent-color: var(--e-global-color-primary);
+    }
+
+    > label {
+      display: inline-block;
+      max-width: calc(100% - 28px);
+      color: #17241e;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.35;
+      vertical-align: top;
+    }
+  }
+}
+
+.zippy-shipping-notes {
+  display: block;
+  width: min(100%, 520px);
+  margin: 10px 0 6px 30px;
+  padding: 9px 0 9px 18px;
+  color: #24372e;
+  border-left: 3px solid #18a85a;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 9px;
+    align-items: start;
+    margin: 0;
+    color: #24372e;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.45;
+
+    + .zippy-shipping-notes__item {
+      margin-top: 8px;
+    }
+
+    &::before {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      color: #18a85a;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    span {
+      display: block;
+    }
+
+    &--success::before {
+      content: "✓";
+    }
+
+    &--warning {
+      color: #7a4320;
+
+      &::before {
+        content: "⚠";
+        color: #d97a16;
+        font-size: 16px;
+      }
+    }
+
+    &--tip {
+      color: #42524a;
+      font-style: italic;
+
+      &::before {
+        content: "☞";
+        color: #d99a18;
+        font-size: 19px;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .zippy-checkout-area-question {
+    padding: 18px 16px;
+
+    h3 {
+      font-size: 20px;
+    }
+
+    &__options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .zippy-shipping-notes {
+    width: auto;
+    margin-left: 24px;
+    padding-left: 14px;
+
+    &__item {
+      grid-template-columns: 20px minmax(0, 1fr);
+      gap: 8px;
+      font-size: 13px;
+    }
+  }
+}

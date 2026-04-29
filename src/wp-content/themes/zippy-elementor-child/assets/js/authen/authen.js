@@ -212,40 +212,43 @@ function initZippyHeaderAccountIcon() {
   const createMobileAccountItem = (index) => {
     const item = document.createElement("li");
     const accountLink = document.createElement("a");
-    const icon = document.createElement("img");
-    const name = document.createElement("span");
+    const label = document.createElement("span");
     const submenu = document.createElement("ul");
     const accountItem = document.createElement("li");
     const logoutItem = document.createElement("li");
     const accountSubLink = document.createElement("a");
     const logoutSubLink = document.createElement("a");
 
-    item.className = "menu-item menu-item-type-custom zippy-mobile-user-menu";
+    item.className =
+      "menu-item menu-item-type-custom menu-item-has-children zippy-mobile-user-menu";
     item.dataset.zippyHeaderUser = String(index);
 
     accountLink.className = "zippy-mobile-user-menu__toggle";
-    accountLink.href = "/my-account/";
-    accountLink.setAttribute("aria-label", "My account");
+    accountLink.href = "#";
+    accountLink.setAttribute("aria-label", "Profile menu");
+    accountLink.setAttribute("aria-expanded", "false");
 
-    icon.src = iconUrl;
-    icon.alt = "";
-    icon.loading = "lazy";
-    icon.decoding = "async";
-
-    name.className = "zippy-mobile-user-menu__name";
-    name.textContent = userName;
+    label.className = "zippy-mobile-user-menu__name";
+    label.textContent = "Profile";
 
     submenu.className = "sub-menu zippy-mobile-user-menu__submenu";
     accountSubLink.href = "/my-account/";
-    accountSubLink.textContent = "My account";
+    accountSubLink.textContent = "My Account";
     logoutSubLink.href = logoutUrl;
     logoutSubLink.textContent = "Logout";
 
-    accountLink.append(icon, name);
+    accountLink.append(label);
     accountItem.appendChild(accountSubLink);
     logoutItem.appendChild(logoutSubLink);
     submenu.append(accountItem, logoutItem);
     item.append(accountLink, submenu);
+
+    accountLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const isOpen = item.classList.toggle("is-open");
+      accountLink.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
 
     return item;
   };
@@ -268,21 +271,20 @@ function initZippyHeaderAccountIcon() {
   );
   const loginButtons = Array.from(new Set([...directTargets, ...fallbackTargets]));
 
-  loginButtons.forEach((loginButton, index) => {
-    const menuClass = "zippy-header-user-menu";
-    const existingMenu =
-      loginButton.nextElementSibling?.classList.contains(menuClass) &&
-      loginButton.nextElementSibling;
-
+  loginButtons.forEach((loginButton) => {
     loginButton.classList.add("is-hidden-after-login");
+  });
+
+  if (loginButtons.length) {
+    const existingMenu = header.querySelector(".zippy-header-user-menu");
 
     if (existingMenu) {
       existingMenu.hidden = false;
-      return;
+    } else {
+      const anchorTarget = loginButtons[loginButtons.length - 1];
+      anchorTarget.insertAdjacentElement("afterend", createAccountMenu(0));
     }
-
-    loginButton.insertAdjacentElement("afterend", createAccountMenu(index));
-  });
+  }
 
   const mobileMenus = document.querySelectorAll(
     "#menu-mobile-main-menu, .jkit-menu"

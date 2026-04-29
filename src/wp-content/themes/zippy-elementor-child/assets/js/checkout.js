@@ -1,17 +1,41 @@
 function initZippyCheckoutDeliveryArea() {
-  const checkoutForm = document.querySelector("form.checkout");
+  const wooJQuery = window.jQuery;
 
-  if (!checkoutForm || typeof jQuery === "undefined") {
+  if (!wooJQuery) {
     return;
   }
 
-  checkoutForm.addEventListener("change", (event) => {
-    if (event.target.name !== "zippy_priority_delivery_area") {
+  const $body = wooJQuery(document.body);
+  const updateCheckout = () => {
+    window.setTimeout(() => {
+      $body.trigger("update_checkout");
+    }, 100);
+  };
+
+  $body
+    .off("change.zippyDeliveryArea", 'input[name="zippy_priority_delivery_area"]')
+    .on(
+      "change.zippyDeliveryArea",
+      'input[name="zippy_priority_delivery_area"]',
+      updateCheckout
+    );
+
+  document.removeEventListener("click", handleZippyDeliveryAreaClick, true);
+  document.addEventListener("click", handleZippyDeliveryAreaClick, true);
+
+  function handleZippyDeliveryAreaClick(event) {
+    const field = event.target.closest("#zippy_priority_delivery_area_field");
+
+    if (!field) {
       return;
     }
 
-    jQuery(document.body).trigger("update_checkout");
-  });
+    updateCheckout();
+  }
 }
 
-document.addEventListener("DOMContentLoaded", initZippyCheckoutDeliveryArea);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initZippyCheckoutDeliveryArea);
+} else {
+  initZippyCheckoutDeliveryArea();
+}

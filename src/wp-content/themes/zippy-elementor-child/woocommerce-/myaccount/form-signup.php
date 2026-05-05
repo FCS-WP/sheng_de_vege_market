@@ -3,6 +3,145 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+if (!function_exists('zippy_normalize_phone_number')) {
+	function zippy_normalize_phone_number($phone)
+	{
+		$phone = trim((string) $phone);
+		$phone = preg_replace('/[^\d+]/', '', $phone);
+
+		if (0 === strpos($phone, '+')) {
+			return '+' . preg_replace('/\D/', '', substr($phone, 1));
+		}
+
+		return preg_replace('/\D/', '', $phone);
+	}
+}
+
+if (!function_exists('zippy_find_user_by_phone')) {
+	function zippy_find_user_by_phone($phone)
+	{
+		$phone = wc_clean($phone);
+		$normalized_phone = zippy_normalize_phone_number($phone);
+
+		if ('' === $normalized_phone) {
+			return false;
+		}
+
+		$user_query = new WP_User_Query(array(
+			'number'     => 1,
+			'fields'     => 'ID',
+			'meta_query' => array(
+				'relation' => 'OR',
+				array(
+					'key'   => 'billing_phone_normalized',
+					'value' => $normalized_phone,
+				),
+				array(
+					'key'   => 'billing_phone',
+					'value' => $phone,
+				),
+				array(
+					'key'   => 'billing_phone',
+					'value' => $normalized_phone,
+				),
+			),
+		));
+
+		$user_ids = $user_query->get_results();
+
+		if (!empty($user_ids)) {
+			return get_user_by('id', $user_ids[0]);
+		}
+
+		$legacy_users = get_users(array(
+			'fields'     => array('ID'),
+			'meta_key'   => 'billing_phone',
+			'meta_value' => '',
+			'meta_compare' => '!=',
+		));
+
+		foreach ($legacy_users as $legacy_user) {
+			$legacy_phone = get_user_meta($legacy_user->ID, 'billing_phone', true);
+
+			if ($normalized_phone === zippy_normalize_phone_number($legacy_phone)) {
+				update_user_meta($legacy_user->ID, 'billing_phone_normalized', $normalized_phone);
+				return get_user_by('id', $legacy_user->ID);
+			}
+		}
+
+		return false;
+	}
+}
+
+if (!function_exists('zippy_is_woocommerce_login_request')) {
+	function zippy_is_woocommerce_login_request()
+	{
+		return (
+			isset($_POST['woocommerce-login-nonce']) &&
+			wp_verify_nonce(wp_unslash($_POST['woocommerce-login-nonce']), 'woocommerce-login')
+		);
+	}
+}
+
+if (!function_exists('zippy_authenticate_phone_login')) {
+	function zippy_authenticate_phone_login($user, $username, $password)
+	{
+		if ($user instanceof WP_User || empty($username) || empty($password) || is_email($username)) {
+			return $user;
+		}
+
+		$matched_user = zippy_find_user_by_phone($username);
+
+		if (!$matched_user instanceof WP_User) {
+			if (zippy_is_woocommerce_login_request()) {
+				return new WP_Error(
+					'invalid_phone_email',
+					__('The telephone or email address is not registered.', 'woocommerce')
+				);
+			}
+
+			return $user;
+		}
+
+		if (!wp_check_password($password, $matched_user->user_pass, $matched_user->ID)) {
+			return new WP_Error(
+				'incorrect_password',
+				sprintf(
+					/* translators: %s: Lost password URL. */
+					__('The password you entered is incorrect. <a href="%s">Lost your password?</a>', 'woocommerce'),
+					esc_url(wp_lostpassword_url())
+				)
+			);
+		}
+
+		return $matched_user;
+	}
+}
+
+if (!function_exists('zippy_update_phone_email_login_error')) {
+	function zippy_update_phone_email_login_error($user, $username, $password)
+	{
+		if (!is_wp_error($user) || !zippy_is_woocommerce_login_request()) {
+			return $user;
+		}
+
+		$error_codes = $user->get_error_codes();
+		$login_error_codes = array('invalid_username', 'invalid_email', 'invalid_phone_email');
+
+		if (array_intersect($login_error_codes, $error_codes)) {
+			return new WP_Error(
+				'invalid_phone_email',
+				__('The telephone or email address is not registered.', 'woocommerce')
+			);
+		}
+
+		return $user;
+	}
+}
+
+add_filter('authenticate', 'zippy_authenticate_phone_login', 19, 3);
+add_filter('authenticate', 'zippy_update_phone_email_login_error', 999, 3);
+
 if (!function_exists('zippy_get_signup_post_data')) {
 	function zippy_get_signup_post_data()
 	{
@@ -32,6 +171,10 @@ if (!function_exists('zippy_create_signup_customer')) {
 
 		if (!empty($data['email']) && email_exists($data['email'])) {
 			$errors->add('email_exists', __('An account is already registered with this email address.', 'woocommerce'));
+		}
+
+		if (!empty($data['phone']) && zippy_find_user_by_phone($data['phone'])) {
+			$errors->add('phone_exists', __('An account is already registered with this phone number.', 'woocommerce'));
 		}
 
 		if (empty($data['date_of_birth'])) {
@@ -65,6 +208,7 @@ if (!function_exists('zippy_create_signup_customer')) {
 		}
 
 		update_user_meta($customer_id, 'billing_phone', $data['phone']);
+		update_user_meta($customer_id, 'billing_phone_normalized', zippy_normalize_phone_number($data['phone']));
 		update_user_meta($customer_id, 'date_of_birth', $data['date_of_birth']);
 		update_user_meta($customer_id, 'pdpa_agreement', 'yes');
 

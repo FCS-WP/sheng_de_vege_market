@@ -86,24 +86,12 @@ add_filter('woocommerce_checkout_fields', 'custom_remove_checkout_fields');
 
 function custom_remove_checkout_fields($fields)
 {
+    unset($fields['billing']['billing_country']);
+    unset($fields['shipping']['shipping_country']);
     unset($fields['billing']['billing_state']);
     unset($fields['shipping']['shipping_state']);
     unset($fields['billing']['billing_city']);
     unset($fields['shipping']['shipping_city']);
-
-    if (isset($fields['billing']['billing_country'])) {
-        $fields['billing']['billing_country']['required'] = false;
-        $fields['billing']['billing_country']['default'] = 'SG';
-        $fields['billing']['billing_country']['class'][] = 'hidden';
-        $fields['billing']['billing_country']['priority'] = 999;
-    }
-
-    if (isset($fields['shipping']['shipping_country'])) {
-        $fields['shipping']['shipping_country']['required'] = false;
-        $fields['shipping']['shipping_country']['default'] = 'SG';
-        $fields['shipping']['shipping_country']['class'][] = 'hidden';
-        $fields['shipping']['shipping_country']['priority'] = 999;
-    }
 
     $fields['billing']['billing_postcode']['label'] = 'Postal Code';
     $fields['billing']['billing_postcode']['placeholder'] = 'Postal Code';

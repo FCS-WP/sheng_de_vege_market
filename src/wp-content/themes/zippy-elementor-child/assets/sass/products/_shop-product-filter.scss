@@ -276,6 +276,11 @@
     bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     left: 0;
     padding: 0 12px;
-    z-index: 9998;
+    z-index: 900;
+  }
+
+  body.zippy-mobile-menu-open .zippy-shop-filter {
+    visibility: hidden;
+    pointer-events: none;
   }
 }

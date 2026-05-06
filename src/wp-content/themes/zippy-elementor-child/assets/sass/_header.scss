@@ -25,3 +25,15 @@
     transform: translateX(-100%);
   }
 }
+
+@media (max-width: 767px) {
+  .elementor-location-header:has(.jkit-menu-wrapper.active),
+  .elementor-location-header .fix-menu:has(.jkit-menu-wrapper.active),
+  .elementor-location-header .fix-menu.fixed:has(.jkit-menu-wrapper.active) {
+    z-index: 100050 !important;
+  }
+
+  .jeg-elementor-kit.jkit-nav-menu .jkit-menu-wrapper.active {
+    z-index: 100060 !important;
+  }
+}

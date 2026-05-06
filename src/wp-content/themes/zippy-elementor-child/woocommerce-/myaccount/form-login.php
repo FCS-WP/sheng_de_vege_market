@@ -15,7 +15,7 @@ do_action('woocommerce_before_customer_login_form'); ?>
 			<?php do_action('woocommerce_login_form_start'); ?>
 
 			<p class="woocommerce-form-row form-row form-row-wide">
-				<label for="username">Phone or email address *</label>
+				<label for="username"><?php esc_html_e('Phone or Email Address', 'woocommerce'); ?> *</label>
 				<input type="text" name="username" id="username" autocomplete="username" required />
 			</p>
 

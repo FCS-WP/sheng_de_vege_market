@@ -316,8 +316,28 @@ function initZippyHeaderAccountIcon() {
   });
 }
 
+function initZippyMobileMenuLayerState() {
+  const syncMenuState = () => {
+    const isOpen = Boolean(document.querySelector(".jkit-menu-wrapper.active"));
+
+    document.body.classList.toggle("zippy-mobile-menu-open", isOpen);
+  };
+
+  syncMenuState();
+
+  const observer = new MutationObserver(syncMenuState);
+
+  document.querySelectorAll(".jkit-menu-wrapper").forEach((menuWrapper) => {
+    observer.observe(menuWrapper, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initZippySignupForm();
   initZippyLoginLoading();
   initZippyHeaderAccountIcon();
+  initZippyMobileMenuLayerState();
 });

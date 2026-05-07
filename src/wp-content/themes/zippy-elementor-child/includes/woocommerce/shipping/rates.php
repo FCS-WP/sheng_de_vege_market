@@ -56,10 +56,14 @@ function zippy_clear_shipping_package_cache()
 function zippy_get_delivery_rate_target($cart_total, $is_priority_area)
 {
     if ($is_priority_area) {
-        return $cart_total > 90 ? 'free' : 'delivery_590';
+        return $cart_total >= 90 ? 'free' : 'delivery_590';
     }
 
-    if ($cart_total > 90) {
+    if ($cart_total >= 110) {
+        return 'free';
+    }
+
+    if ($cart_total >= 80) {
         return 'delivery_590';
     }
 

@@ -109,7 +109,7 @@ if (!function_exists('zippy_authenticate_phone_login')) {
 				sprintf(
 					/* translators: %s: Lost password URL. */
 					__('The password you entered is incorrect. <a href="%s">Lost your password?</a>', 'woocommerce'),
-					esc_url(wp_lostpassword_url())
+					esc_url(wc_lostpassword_url())
 				)
 			);
 		}

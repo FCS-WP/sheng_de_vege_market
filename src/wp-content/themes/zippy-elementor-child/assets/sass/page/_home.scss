@@ -5,3 +5,77 @@
     }
   }
 }
+
+#home-slider-banner {
+  .zippy-home-banner-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .zippy-home-banner-primary-button,
+  .zippy-home-banner-secondary-button {
+    min-width: 128px;
+    cursor: pointer;
+    text-align: center;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .zippy-home-banner-primary-button {
+    color: #ffffff !important;
+    border-color: #7b6f63 !important;
+    background-color: #7b6f63 !important;
+    box-shadow: 0 12px 26px rgba(36, 24, 16, 0.22);
+
+    &:hover,
+    &:focus {
+      color: #ffffff !important;
+      border-color: #5f544a !important;
+      background-color: #5f544a !important;
+      transform: translateY(-1px);
+    }
+  }
+
+  .zippy-home-banner-secondary-button {
+    color: #7b6f63 !important;
+    border-color: #ffffff !important;
+    background-color: #ffffff !important;
+
+    &:hover,
+    &:focus {
+      color: #5f544a !important;
+      border-color: #f4eee8 !important;
+      background-color: #f4eee8 !important;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #home-slider-banner {
+    .zippy-home-banner-buttons {
+      gap: 10px;
+    }
+
+    .zippy-home-banner-primary-button,
+    .zippy-home-banner-secondary-button {
+      min-width: 112px;
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+  }
+}
+
+@media (max-width: 374px) {
+  #home-slider-banner {
+    .zippy-home-banner-buttons {
+      align-items: stretch;
+      flex-direction: column;
+      max-width: 180px;
+    }
+  }
+}

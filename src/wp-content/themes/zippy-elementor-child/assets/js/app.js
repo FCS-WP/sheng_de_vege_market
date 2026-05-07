@@ -3,6 +3,7 @@ import "./woocommerce/add_to_cart.js";
 import "./authen/authen.js";
 import "./shop/filter.js";
 import "./checkout.js";
+import "./page/home.js";
 
 function initMobileSlick() {
   if ($(window).width() <= 767) {

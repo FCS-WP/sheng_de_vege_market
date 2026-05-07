@@ -4,6 +4,216 @@ body.woocommerce-account {
     display: none;
   }
 
+  .zippy-account {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    gap: 28px;
+    width: min(100%, 1180px);
+    margin: 48px auto;
+    padding: 0 16px;
+    color: #17241e;
+  }
+
+  .zippy-account-nav {
+    width: 100%;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid #dce8e0;
+    border-radius: 12px;
+    box-shadow: 0 18px 46px rgba(22, 45, 34, 0.08);
+
+    &__list {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    &__item {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    &__link {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 11px 13px;
+      color: #405249 !important;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.25;
+      text-decoration: none !important;
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        color: #17241e !important;
+        background: #f7faf8;
+        border-color: #dce8e0;
+        outline: 0;
+        transform: translateX(2px);
+      }
+    }
+
+    .is-active .zippy-account-nav__link,
+    .zippy-account-nav__link[aria-current="page"] {
+      color: var(--e-global-color-secondary) !important;
+      background: var(--e-global-color-primary);
+      border-color: var(--e-global-color-primary);
+      box-shadow: 0 8px 20px rgba(17, 24, 39, 0.1);
+    }
+  }
+
+  .zippy-account__content,
+  .woocommerce-MyAccount-content {
+    width: 100%;
+    min-height: 360px;
+    padding: 32px;
+    background: #fff;
+    border: 1px solid #dce8e0;
+    border-radius: 12px;
+    box-shadow: 0 18px 46px rgba(22, 45, 34, 0.08);
+
+    > p:first-child {
+      margin-top: 0;
+    }
+
+    a {
+      color: var(--e-global-color-primary);
+      font-weight: 700;
+      text-decoration: none !important;
+
+      &:hover,
+      &:focus {
+        color: #17241e;
+      }
+    }
+
+    table {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+
+  .zippy-account-dashboard {
+    display: grid;
+    gap: 24px;
+
+    &__hero {
+      position: relative;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #edf2ef;
+    }
+
+    &__eyebrow {
+      margin: 0 0 8px;
+      color: var(--e-global-color-61b2999);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    &__title {
+      margin: 0 0 10px;
+      color: #111;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    &__copy {
+      max-width: 650px;
+      margin: 0;
+      color: #64736b;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    &__logout {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      margin-top: 18px;
+      padding: 10px 16px;
+      color: var(--e-global-color-secondary) !important;
+      background: var(--e-global-color-primary);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.2;
+      text-decoration: none !important;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+      &:hover,
+      &:focus {
+        color: var(--e-global-color-secondary) !important;
+        box-shadow: 0 6px 20px rgba(17, 24, 39, 0.12);
+        transform: translateY(-1px);
+      }
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    &__card {
+      display: grid;
+      gap: 7px;
+      min-height: 128px;
+      padding: 18px;
+      color: #17241e !important;
+      background: #fbfcfb;
+      border: 1px solid #edf2ef;
+      border-radius: 12px;
+      text-decoration: none !important;
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+
+      &:hover,
+      &:focus {
+        color: #17241e !important;
+        background: #fff;
+        border-color: #dce8e0;
+        box-shadow: 0 10px 24px rgba(22, 45, 34, 0.08);
+        transform: translateY(-2px);
+      }
+    }
+
+    &__card-title {
+      color: #17241e;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    &__card-text {
+      color: #64736b;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+  }
+
   #customer_login {
     width: min(100%, 1200px);
     margin: 56px auto;
@@ -209,10 +419,230 @@ body.woocommerce-account {
       }
     }
   }
+
+  .zippy-password {
+    width: min(100%, 720px);
+    margin: 56px auto;
+    padding: 0 16px;
+    color: #17241e;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    &__wrap {
+      padding: 32px;
+      background: #fff;
+      border: 1px solid #dce8e0;
+      border-radius: 12px;
+      box-shadow: 0 18px 46px rgba(22, 45, 34, 0.08);
+    }
+
+    &__header {
+      margin-bottom: 24px;
+    }
+
+    &__eyebrow {
+      margin: 0 0 8px;
+      color: var(--e-global-color-61b2999);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    &__title {
+      margin: 0 0 10px;
+      color: #111;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: 0;
+      text-decoration: none;
+    }
+
+    &__subtitle {
+      max-width: 560px;
+      margin: 0;
+      color: #64736b;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    &__form {
+      display: grid;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      border: 0 !important;
+    }
+
+    &__form--two-fields {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__field,
+    &__actions,
+    &__footer {
+      margin: 0;
+      padding: 0;
+    }
+
+    &__field {
+      label {
+        display: block;
+        margin-bottom: 7px;
+        color: #69727d;
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: 0;
+      }
+
+      input {
+        width: 100%;
+        min-height: 50px;
+        padding: 12px 14px;
+        color: #69727d;
+        background: #fff;
+        border: 0 !important;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(17, 24, 39, 0.08) !important;
+        font-size: 14px;
+        line-height: 1.4;
+        transition: box-shadow 0.2s ease;
+
+        &::placeholder {
+          color: #91a099;
+        }
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          border: 0 !important;
+          outline: 0 !important;
+          box-shadow: 0 6px 20px rgba(17, 24, 39, 0.12) !important;
+        }
+      }
+    }
+
+    &__actions {
+      grid-column: 1 / -1;
+    }
+
+    &__submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 52px;
+      padding: 13px 24px !important;
+      color: var(--e-global-color-secondary) !important;
+      background: var(--e-global-color-primary) !important;
+      border: 0 !important;
+      border-radius: 12px !important;
+      box-shadow: 0 4px 16px rgba(17, 24, 39, 0.08);
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      line-height: 1.2 !important;
+      text-decoration: none !important;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+      &:hover,
+      &:focus,
+      &:focus-visible,
+      &:active {
+        color: var(--e-global-color-secondary) !important;
+        background: var(--e-global-color-primary) !important;
+        border: 0 !important;
+        outline: 0 !important;
+        box-shadow: 0 6px 20px rgba(17, 24, 39, 0.12);
+        transform: translateY(-1px);
+      }
+    }
+
+    &__footer {
+      grid-column: 1 / -1;
+      text-align: center;
+
+      a:not(.zippy-password__submit) {
+        color: var(--e-global-color-primary);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-decoration: none !important;
+
+        &:hover,
+        &:focus {
+          color: #17241e;
+          text-decoration: none !important;
+        }
+      }
+    }
+
+    &__footer--confirmation {
+      margin-top: 24px;
+    }
+  }
 }
 
 @media (max-width: 900px) {
   body.woocommerce-account {
+    .zippy-account {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin: 36px auto;
+    }
+
+    .zippy-account-nav {
+      padding: 12px;
+
+      &__list {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      &__item {
+        flex: 0 0 auto;
+      }
+
+      &__link {
+        min-height: 40px;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    .zippy-account__content,
+    .woocommerce-MyAccount-content {
+      min-height: 0;
+      padding: 24px 18px;
+    }
+
+    .zippy-account-dashboard {
+      &__title {
+        font-size: 30px;
+      }
+
+      &__grid {
+        grid-template-columns: 1fr;
+      }
+
+      &__card {
+        min-height: 0;
+      }
+    }
+
     #customer_login {
       display: grid;
       gap: 28px;
@@ -236,6 +666,22 @@ body.woocommerce-account {
       .myacc-register-form {
         min-height: 0;
         padding: 24px 18px;
+      }
+    }
+
+    .zippy-password {
+      margin: 36px auto;
+
+      &__wrap {
+        padding: 24px 18px;
+      }
+
+      &__title {
+        font-size: 30px;
+      }
+
+      &__form--two-fields {
+        grid-template-columns: 1fr;
       }
     }
   }

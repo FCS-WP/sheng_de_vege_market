@@ -197,6 +197,25 @@
     }
   }
 
+  &__category-name {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 8px;
+    min-width: 0;
+  }
+
+  &__category-name-en,
+  &__category-name-zh {
+    overflow-wrap: anywhere;
+  }
+
+  &__category-name-zh {
+    color: #69727d;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
   &__actions {
     display: grid;
     grid-template-columns: 1fr 1.5fr;

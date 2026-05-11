@@ -295,6 +295,10 @@ if (!function_exists('zippy_render_signup_form_shortcode')) {
 						<?php foreach ($errors as $error) : ?>
 							<p><?php echo esc_html($error); ?></p>
 						<?php endforeach; ?>
+						<div class="zippy-signup__hyper-link">
+							<a href="<?php echo esc_url(home_url('/my-account/')); ?>" class="zippy-signup__hyper-link--login"><?php esc_html_e('Login', 'woocommerce'); ?></a>
+							<a href="<?php echo esc_url(wc_lostpassword_url()); ?>" class="zippy-signup__hyper-link--lost-password"><?php esc_html_e('Lost your password?', 'woocommerce'); ?></a>
+						</div>
 					</div>
 				<?php endif; ?>
 
@@ -306,7 +310,7 @@ if (!function_exists('zippy_render_signup_form_shortcode')) {
 
 				<div class="zippy-signup__ajax-notice" data-zippy-signup-notice aria-live="polite"></div>
 
-				<form class="zippy-signup__form" method="post" data-zippy-signup-form data-ajax-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" data-ajax-action="zippy_signup_register">
+				<form class="zippy-signup__form" method="post" data-zippy-signup-form data-ajax-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" data-ajax-action="zippy_signup_register" data-login-url="<?php echo esc_url(home_url('/my-account/')); ?>" data-lost-password-url="<?php echo esc_url(wc_lostpassword_url()); ?>">
 					<p class="zippy-signup__field">
 						<label for="zippy_signup_phone"><?php esc_html_e('Phone number', 'woocommerce'); ?></label>
 						<input type="tel" id="zippy_signup_phone" name="zippy_signup_phone" value="<?php echo esc_attr($phone); ?>" autocomplete="tel" placeholder="<?php esc_attr_e('Enter your phone number', 'woocommerce'); ?>" required>

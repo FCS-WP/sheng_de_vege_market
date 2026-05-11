@@ -3,6 +3,25 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
+if (!function_exists('zippy_get_product_category_chinese_name')) {
+	function zippy_get_product_category_chinese_name($category)
+	{
+		if (!$category instanceof WP_Term) {
+			return '';
+		}
+
+		if (function_exists('get_field')) {
+			$acf_value = get_field('chinese_product_category_name', 'product_cat_' . $category->term_id);
+
+			if (!empty($acf_value)) {
+				return $acf_value;
+			}
+		}
+
+		return get_term_meta($category->term_id, 'chinese_product_category_name', true);
+	}
+}
+
 if (!function_exists('zippy_render_shop_filter_shortcode')) {
 	function zippy_render_shop_filter_shortcode()
 	{
@@ -70,9 +89,15 @@ if (!function_exists('zippy_render_shop_filter_shortcode')) {
 
 							<?php if (!is_wp_error($categories) && !empty($categories)) : ?>
 								<?php foreach ($categories as $category) : ?>
+									<?php $chinese_category_name = zippy_get_product_category_chinese_name($category); ?>
 									<label class="zippy-shop-filter__category">
 										<input type="radio" name="zippy_filter_category" value="<?php echo esc_attr($category->slug); ?>" <?php checked($category->slug, $current_category); ?>>
-										<span><?php echo esc_html($category->name); ?></span>
+										<span class="zippy-shop-filter__category-name">
+											<span class="zippy-shop-filter__category-name-en"><?php echo esc_html($category->name); ?></span>
+											<?php if (!empty($chinese_category_name)) : ?>
+												<span class="zippy-shop-filter__category-name-zh"><?php echo esc_html($chinese_category_name); ?></span>
+											<?php endif; ?>
+										</span>
 									</label>
 								<?php endforeach; ?>
 							<?php endif; ?>

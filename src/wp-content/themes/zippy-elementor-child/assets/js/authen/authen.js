@@ -27,6 +27,28 @@ function initZippySignupForm() {
 
       notice.className = `zippy-signup__notice zippy-signup__notice--${type}`;
       notice.innerHTML = `<p>${html}</p>`;
+
+      if (type !== "error") {
+        return;
+      }
+
+      const linkWrap = document.createElement("div");
+      const loginLink = document.createElement("a");
+      const lostPasswordLink = document.createElement("a");
+
+      linkWrap.className = "zippy-signup__hyper-link";
+
+      loginLink.className = "zippy-signup__hyper-link--login";
+      loginLink.href = form.dataset.loginUrl || "/my-account/";
+      loginLink.textContent = "Login";
+
+      lostPasswordLink.className = "zippy-signup__hyper-link--lost-password";
+      lostPasswordLink.href =
+        form.dataset.lostPasswordUrl || "/my-account/lost-password/";
+      lostPasswordLink.textContent = "Lost your password?";
+
+      linkWrap.append(loginLink, lostPasswordLink);
+      notice.appendChild(linkWrap);
     };
 
     const setLoading = (isLoading) => {

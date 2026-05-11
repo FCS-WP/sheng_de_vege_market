@@ -63,7 +63,7 @@
     p {
       margin: 0;
 
-      + p {
+      +p {
         margin-top: 6px;
       }
     }
@@ -78,6 +78,29 @@
       color: #145a34;
       background: #eefaf3;
       border: 1px solid #addfc0;
+    }
+  }
+
+  &__hyper-link {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-top: 10px;
+
+    a {
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+      text-decoration: underline !important;
+      text-underline-offset: 3px;
+    }
+
+    &--login {
+      color: var(--e-global-color-61b2999);
+    }
+
+    &--lost-password {
+      color: #8a8a8a;
     }
   }
 
@@ -284,6 +307,7 @@
 }
 
 body.logged-in {
+
   #login-button-header,
   #register-button-header,
   #login-button-header.is-hidden-after-login,
@@ -405,7 +429,7 @@ body.logged-in {
       text-decoration: none !important;
     }
 
-    + a {
+    +a {
       margin-top: 4px;
     }
   }
@@ -414,7 +438,7 @@ body.logged-in {
 .jkit-menu,
 #menu-mobile-main-menu {
   .zippy-mobile-user-menu {
-    > a.zippy-mobile-user-menu__toggle {
+    >a.zippy-mobile-user-menu__toggle {
       display: flex !important;
       align-items: center;
       justify-content: space-between;
@@ -453,11 +477,11 @@ body.logged-in {
       line-height: 1.2;
     }
 
-    &.is-open > a.zippy-mobile-user-menu__toggle::after {
+    &.is-open>a.zippy-mobile-user-menu__toggle::after {
       transform: rotate(225deg);
     }
 
-    > .zippy-mobile-user-menu__submenu {
+    >.zippy-mobile-user-menu__submenu {
       display: none !important;
       position: static !important;
       width: 100% !important;
@@ -500,7 +524,7 @@ body.logged-in {
       }
     }
 
-    &.is-open > .zippy-mobile-user-menu__submenu {
+    &.is-open>.zippy-mobile-user-menu__submenu {
       display: block !important;
     }
   }

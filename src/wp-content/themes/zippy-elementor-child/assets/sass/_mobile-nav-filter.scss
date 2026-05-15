@@ -1,0 +1,304 @@
+@media (max-width: 767px) {
+    :root {
+        --zippy-mobile-nav-width: 300px;
+    }
+
+    body.zippy-mobile-menu-open {
+        overflow: hidden;
+    }
+
+    #mobile-hamburger-menu {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: transparent !important;
+            border: 0 !important;
+            box-shadow: none !important;
+            outline: 0;
+        }
+
+        img {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .zippy-mobile-nav-overlay {
+        position: fixed;
+        inset: 0 0 0 var(--zippy-mobile-nav-width);
+        z-index: 9997;
+        display: block;
+        padding: 0;
+        background: #26262642 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+            opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+            visibility 0s linear 420ms;
+        visibility: hidden;
+    }
+
+    .zippy-mobile-nav-overlay.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        transition:
+            opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+            visibility 0s linear 0s;
+        visibility: visible;
+    }
+
+    .zippy-mobile-nav-drawer {
+        position: fixed !important;
+        top: 0 !important;
+        right: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        z-index: 9998 !important;
+        display: block !important;
+        width: var(--zippy-mobile-nav-width) !important;
+        max-width: 78vw;
+        height: 100vh !important;
+        padding: 10px 14px 22px !important;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: #fff !important;
+        border: 0 !important;
+        box-shadow: 14px 0 28px rgba(17, 24, 39, 0.12);
+        transform: translateX(-100%);
+        transition:
+            transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+            visibility 0s linear 420ms;
+        visibility: hidden;
+        -webkit-overflow-scrolling: touch;
+
+        &.is-open {
+            transform: translateX(0);
+            transition:
+                transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0s linear 0s;
+            visibility: visible;
+        }
+
+        ul,
+        .elementor-nav-menu {
+            display: block !important;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            background: transparent !important;
+        }
+
+        li,
+        .menu-item {
+            position: relative;
+            display: block !important;
+            margin: 0;
+            padding: 0;
+            background: transparent !important;
+            border: 0 !important;
+        }
+
+        a,
+        button,
+        .elementor-item,
+        .elementor-sub-item {
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            min-height: 31px;
+            padding: 4px 0 !important;
+            color: #333 !important;
+            background: transparent !important;
+            border: 0 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            line-height: 1.35 !important;
+            text-decoration: none !important;
+            box-shadow: none !important;
+        }
+
+        a:hover,
+        a:focus,
+        button:hover,
+        button:focus,
+        .elementor-item:hover,
+        .elementor-item:focus {
+            color: #111 !important;
+            background: transparent !important;
+            outline: 0;
+        }
+
+        .zippy-mobile-home-link a,
+        .zippy-mobile-help-link a {
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .zippy-mobile-nav-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            flex: 0 0 16px;
+            background-color: currentColor;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+
+        .zippy-mobile-nav-icon--home {
+            mask-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m3 11 9-8 9 8'/%3E%3Cpath d='M5 10v10h14V10'/%3E%3Cpath d='M9 20v-6h6v6'/%3E%3C/svg%3E");
+        }
+
+        .zippy-mobile-nav-icon--help {
+            mask-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M9.1 9a3 3 0 1 1 5.8 1c-.8 1.3-2.9 1.8-2.9 3.5'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
+        }
+
+        .zippy-mobile-nav-divider {
+            height: 1px;
+            margin: 10px 0 12px;
+            padding: 0;
+            background: #e8edf2 !important;
+        }
+
+        .zippy-mobile-product-categories__title {
+            display: block;
+            min-height: 31px;
+            padding: 4px 0;
+            color: #333;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .zippy-mobile-product-categories__list {
+            padding-left: 10px !important;
+        }
+
+        .zippy-mobile-product-categories__list a {
+            min-height: 29px;
+            padding: 3px 0 !important;
+            font-weight: 400 !important;
+        }
+
+        .zippy-mobile-category-more button {
+            justify-content: flex-start;
+            min-height: 30px;
+            color: #777 !important;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            cursor: pointer;
+        }
+
+        .menu-item-has-children>a,
+        .zippy-mobile-nav-parent>a {
+            font-weight: 700 !important;
+
+            &::after {
+                content: "";
+                width: 7px;
+                height: 7px;
+                margin-left: 8px;
+                border-top: 1px solid #9aa3ad;
+                border-right: 1px solid #9aa3ad;
+                transform: rotate(45deg);
+                transition: transform 160ms ease;
+            }
+        }
+
+        .menu-item-has-children.is-open>a::after,
+        .zippy-mobile-nav-parent.is-open>a::after {
+            transform: rotate(135deg);
+        }
+
+        .sub-menu {
+            display: block !important;
+            max-height: 0;
+            margin: 6px 0 8px !important;
+            padding: 0 0 0 10px !important;
+            overflow: hidden;
+            background: transparent !important;
+            box-shadow: none !important;
+            position: static !important;
+            width: 100% !important;
+            opacity: 0;
+            clip-path: inset(0 100% 0 0);
+            transform: translateX(-8px);
+            transition:
+                max-height 260ms cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 180ms ease,
+                clip-path 260ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .menu-item-has-children.is-open>.sub-menu,
+        .zippy-mobile-nav-parent.is-open>.sub-menu,
+        .current-menu-ancestor>.sub-menu {
+            max-height: 720px;
+            opacity: 1;
+            clip-path: inset(0 0 0 0);
+            transform: translateX(0);
+        }
+
+        .sub-menu a,
+        .sub-menu .elementor-sub-item {
+            min-height: 29px;
+            padding: 3px 0 !important;
+            color: #333 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            white-space: normal;
+        }
+
+        .zippy-mobile-account-menu {
+            margin-top: 2px;
+        }
+
+        .zippy-mobile-account-menu__toggle {
+            justify-content: flex-start !important;
+            gap: 8px;
+
+            img {
+                width: 18px;
+                height: 18px;
+                flex: 0 0 18px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            &::after {
+                margin-left: auto;
+            }
+        }
+
+        .zippy-mobile-account-menu__name {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .zippy-mobile-account-menu__submenu {
+            padding-left: 26px !important;
+        }
+    }
+
+    .zippy-mobile-home-link>a,
+    .zippy-mobile-help-link>a {
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            font-weight: 700 !important;
+        }
+    }
+}

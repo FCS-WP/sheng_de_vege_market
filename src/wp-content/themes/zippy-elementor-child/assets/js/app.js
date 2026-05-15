@@ -2,6 +2,7 @@ import "../lib/slick/slick.min";
 import "./woocommerce/add_to_cart.js";
 import "./authen/authen.js";
 import "./shop/filter.js";
+import "./shop/mobile-filter.js";
 import "./checkout.js";
 import "./page/home.js";
 
